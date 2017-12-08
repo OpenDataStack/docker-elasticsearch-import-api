@@ -2,7 +2,7 @@ FROM opendatastack/docker-symfony:latest
 MAINTAINER Noomane Achraf<noomane@angrycactus.io>
 
 # Supervisor
-COPY config/supervisord/conf.d/ /etc/supervisor/conf.d/
+# COPY config/supervisord/conf.d/ /etc/supervisor/conf.d/
 
 # Nginx
 COPY ./config/nginx/default.conf /etc/nginx/sites-available/default
