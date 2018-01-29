@@ -13,7 +13,11 @@ COPY config/php/fpm/pool.d/www.conf /etc/php/7.0/fpm/pool.d/www.conf
 COPY ./src/elasticsearch-import-api-symfony /var/www/project
 # Exec script.
 COPY ./scripts/start.sh /start.sh
-RUN chmod 755 /start.sh
+
+RUN chmod 755 /start.sh \
+	# forward request and error logs to docker log collector
+	&& ln -sf /dev/stdout /var/log/nginx/project_access.log \
+	&& ln -sf /dev/stderr /var/log/nginx/project_error.log
 
 EXPOSE 80
 
